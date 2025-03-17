@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href ./",
     "serve:dist": "ng build && npx http-server dist/arucare-landing/browser -p 4200",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

@@ -3,7 +3,7 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # Ejecutar cuando se haga push en la rama "main"
+      - master # Ejecutar cuando se haga push en la rama "main"
 jobs:
   build:
     runs-on: ubuntu-latest

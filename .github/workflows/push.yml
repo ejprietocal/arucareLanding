@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: 🏗️ Construir el proyecto
-        run: npm run build
+        run: npm run build -- --base-href "/arucareLanding/"
 
       - name: 🚫 Desactivar Jekyll
         run: touch docs/browser/.nojekyll
@@ -29,4 +29,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs/browser
+          folder: docs

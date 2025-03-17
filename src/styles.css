@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+  /* To completely disable the default theme and use only custom values, set the global theme variable namespace to  */
+  /* --*:initial; */
+
+
+  /* Colors */
+  --color-blue: oklch(0.64 0.14 252.07);
+
+  /* Fonts */
+  --font-main: poppins, sans-serif;
+
+  /* Animations */
+  --animation-fade-in: fade-in 0.5s ease-in-out;
+  --animation-fade-out: fade-out 0.5s ease-in-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+}
+
+
+.active{
+  @apply text-blue-500
+}

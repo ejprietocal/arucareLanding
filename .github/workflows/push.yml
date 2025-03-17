@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: 🏗️ Construir el proyecto
-        run: ng build --configuration production --output-path=dist
+        run: npm run build
 
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

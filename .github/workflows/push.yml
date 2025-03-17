@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: 🏗️ Construir el proyecto
-        run: npm run build -- --output-path=dist --base-href /arucareLanding/
+        run: ng build --configuration production --output-path=dist
 
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

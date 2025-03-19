@@ -8,8 +8,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
   imports: [
     RouterOutlet,
     NavbarComponent,
-    FooterComponent
-
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
 })

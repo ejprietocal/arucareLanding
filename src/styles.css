@@ -2,19 +2,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* To completely disable the default theme and use only custom values, set the global theme variable namespace to  */
-  /* --*:initial; */
+  --animate-slide-in: slice-in .5s ease-in-out;
+  --animate-slide-out: slice-out .5s ease-in-out;
 
-
-  /* Colors */
-  --color-blue: oklch(0.64 0.14 252.07);
-
-  /* Fonts */
-  --font-main: poppins, sans-serif;
-
-  /* Animations */
-  --animation-fade-in: fade-in 0.5s ease-in-out;
-  --animation-fade-out: fade-out 0.5s ease-in-out;
+  --animate-fade-in: fade-in .5s ease-in-out;
+  --animate-fade-out: fade-out .5s ease-in-out;
 
   @keyframes fade-in {
     from {
@@ -24,9 +16,33 @@
       opacity: 1;
     }
   }
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 
+  @keyframes slice-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slice-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
 }
-
 
 .active{
   @apply text-blue-500

@@ -17,8 +17,9 @@
       'animate-slide-in': menuOpen && !isClosing && screenSize().width < 640,
       'animate-slide-out': isClosing && screenSize().width < 640,
       hidden: !menuOpen && !isClosing,
+      'bg-gradient-to-b' : screenSize().width <= 640
     }"
-    class="absolute top-0 h-dvh w-dvw bg-slate-200 flex-col justify-around text-center text-2xl font-light duration-500 sm:static sm:flex sm:h-auto sm:w-1/2 sm:flex-row sm:justify-end sm:gap-10 sm:bg-transparent sm:text-left sm:text-sm"
+    class="absolute top-0 h-dvh w-dvw  from-slate-200 to-blue-400 flex-col justify-around text-center text-2xl font-light duration-500 sm:static sm:flex sm:h-auto sm:w-1/2 sm:flex-row sm:justify-end sm:gap-10 sm:bg-transparent sm:text-left sm:text-sm"
     >
       <li class="cursor-pointer" (click)="toggleMenu()">
         <a
@@ -31,7 +32,7 @@
         <a
         routerLink="/about"
         routerLinkActive="active"
-        >About</a>
+        >About us</a>
       </li>
       <li class="cursor-pointer" (click)="toggleMenu()">
         <a

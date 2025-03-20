@@ -19,9 +19,8 @@ export class ReviewsComponent {
   public readonly responsibleBreakpoints = this.breakPoints.ResponsiveOptions;
 
   products = [
-    { name: 'Image 1', image: 'https://via.placeholder.com/150' },
-    { name: 'Image 2', image: 'https://via.placeholder.com/150' },
-    { name: 'Image 3', image: 'https://via.placeholder.com/150' },
-    { name: 'Image 4', image: 'https://via.placeholder.com/150' },
+    { name: 'Image 1', image: 'assets/images/image1.png' },
+    { name: 'Image 3', image: 'assets/images/image3.png' },
+    { name: 'Image 2', image: 'assets/images/image2.png' },
   ];
 }

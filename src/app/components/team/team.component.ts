@@ -18,6 +18,9 @@ import { DividerModule } from 'primeng/divider';
 })
 export class TeamComponent {
 
+  showMore: { [key: number]: boolean } = {};
+
+
   public doctors : Doctor[] = [
     {
       image: 'assets/images/doctor1.png',
@@ -43,4 +46,7 @@ export class TeamComponent {
 
   ]
 
+  toggleShowMore(index: number) {
+    this.showMore[index] = !this.showMore[index];
+  }
 }

@@ -5,6 +5,7 @@ import { ReviewsComponent } from '../../reviews/reviews.component';
 import { MedicalsComponent } from '../../medicals/medicals.component';
 import { ReserveComponent } from '../../reserve/reserve.component';
 import { DividerModule } from 'primeng/divider';
+import { TeamComponent } from '../../team/team.component';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { DividerModule } from 'primeng/divider';
     ReviewsComponent,
     MedicalsComponent,
     ReserveComponent,
-    DividerModule
+    DividerModule,
+    TeamComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

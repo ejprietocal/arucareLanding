@@ -29,4 +29,15 @@
       <app-team></app-team>
   </section>
 
+  <p-galleria  [value]="images" [(visible)]="isActiveValue" [responsiveOptions]="responsiveOptions" [numVisible]="7" [circular]="true" [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="true">
+    <ng-template #item let-item>
+        <img
+            [src]="item.itemImageSrc"
+            class="h-100 sm:h-200 object-cover" />
+    </ng-template>
+    <ng-template #thumbnail let-item>
+      <img [src]="item.thumbnailImageSrc" class="h-20 object-cover"/>
+  </ng-template>
+  </p-galleria>
+
 </div>

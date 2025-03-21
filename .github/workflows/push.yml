@@ -47,6 +47,12 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages
 
+      - name: 🧹 Borrar archivos en el servidor (excepto dashboard)
+        run: |
+          sshpass -p "${{ secrets.FTP_USER_PASS_ARUCARE }}" ssh -o StrictHostKeyChecking=no -p 21 ${{ secrets.FTP_USER_ARUCARE }}@${{ secrets.FTP_URL_ARUCARE }} <<EOF
+          find / -mindepth 1 ! -path "/dashboard/*" -delete
+          EOF
+
       - name: 🚀 Subir archivos al servidor FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -58,6 +64,5 @@ jobs:
           local-dir: ./
           server-dir: /
           exclude: |
-            github/
-            .git/
-          dangerous-clean-slate: true
+            **/.git*
+            **/.github*

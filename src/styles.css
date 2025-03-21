@@ -47,6 +47,23 @@
   }
 }
 
+.buttonEasy{
+  @apply
+  font-black
+  p-2
+  w-fit
+  flex
+  gap-3
+  items-center
+  bg-gradient-to-r
+  from-slate-50
+  to-gray-400
+  bg-clip-text
+  text-transparent
+  duration-300
+  cursor-pointer
+}
+
 
 .active{
   @apply text-blue-500

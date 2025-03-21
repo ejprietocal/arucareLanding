@@ -52,10 +52,10 @@ jobs:
           password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
           port: ${{ secrets.FTP_ARUCARE_PORT }}
           source: "*"
-          target: "./"
+          target: "."
           strip_components: 0  # Mantiene la estructura de archivos
           script: |
-            find /arucare -mindepth 1 ! -name ".htaccess" ! -path "/arucare/dashboard*" -delete
+            find . -mindepth 1 ! -name ".htaccess" ! -path "./dashboard*" -delete
 
       - name: 🧹 Limpiar archivos no deseados en el servidor
         run: |

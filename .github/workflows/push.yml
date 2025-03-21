@@ -1,9 +1,10 @@
-name: Deploy Angular to GitHub Pages
+name: Build and Deploy Angular to GitHub Pages & FTP
 
 on:
   push:
     branches:
-      - master # Ejecutar cuando se haga push en la rama "main"
+      - master  # Se ejecuta cuando hay cambios en "master"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,3 +28,35 @@ jobs:
         with:
           branch: gh-pages
           folder: docs/arucarelanding/browser
+
+  deploy-ftp:
+    needs: build  # Espera a que termine el job "build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: ⏳ Esperar a que la rama gh-pages se actualice
+        run: |
+          sleep 30  # Pequeña espera para asegurar que gh-pages se actualizó
+
+      - name: 📂 Descargar la última versión de gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+
+      - name: 📂 Subir archivos al servidor FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_URL_ARUCARE }}
+          username: ${{ secrets.FTP_USER_ARUCARE }}
+          password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
+          protocol: ftps
+          port: ${{ secrets.FTP_ARUCARE_PORT }}
+          local-dir: ./ # Subir desde la raíz de gh-pages
+          server-dir: / # Subir al directorio raíz del servidor
+          exclude: |
+            .github/**    # No subir archivos de configuración de GitHub
+          exclude-server: |
+            .htaccess     # No borrar el archivo .htaccess en el servidor
+            dashboard/**  # No borrar la carpeta dashboard en el servidor

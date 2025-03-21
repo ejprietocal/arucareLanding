@@ -14,8 +14,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class FooterComponent {
   footerLinks = [
-    { name: 'About Us', url: '/about' },
-    { name: 'Contact', url: '/contact' },
     { name: 'Privacy Policy', url: '/privacy&policy' },
     { name: 'Terms of Service', url: '/termsAndConditions' }
   ];

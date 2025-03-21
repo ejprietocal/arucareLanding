@@ -55,8 +55,6 @@ jobs:
           local-dir: ./
           server-dir: /
           exclude: |
-            .github/
-            .github/workflows/
             dashboard/
             .htaccess
           dangerous-clean-slate: true

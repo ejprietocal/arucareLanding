@@ -1,10 +1,9 @@
-name: Build and Deploy Angular to GitHub Pages & FTP
+name: Deploy Angular to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # Se ejecuta cuando hay cambios en "master"
-
+      - master # Ejecutar cuando se haga push en la rama "main"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,7 +45,7 @@ jobs:
           git checkout gh-pages
 
       - name: 📂 Subir archivos al servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_URL_ARUCARE }}
           username: ${{ secrets.FTP_USER_ARUCARE }}
@@ -60,3 +59,5 @@ jobs:
           exclude-server: |
             .htaccess     # No borrar el archivo .htaccess en el servidor
             dashboard/**  # No borrar la carpeta dashboard en el servidor
+          dangerous-clean-slate: true  # ⚠️ Esto BORRARÁ TODO excepto los archivos excluidos
+

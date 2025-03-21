@@ -19,15 +19,18 @@
       hidden: !menuOpen && !isClosing,
       'bg-gradient-to-b' : screenSize().width <= 640
     }"
-    class="absolute top-0 h-dvh w-dvw  from-slate-200 to-blue-400 flex-col justify-around text-center text-2xl font-light duration-500 sm:static sm:flex sm:h-auto sm:w-1/2 sm:flex-row sm:justify-end sm:gap-10 sm:bg-transparent sm:text-left sm:text-sm"
+    class="absolute top-0 h-dvh w-dvw  from-stone-300 to-sky-400 flex-col justify-around text-center text-2xl font-light duration-500 sm:static sm:flex sm:h-auto sm:w-1/2 sm:flex-row sm:justify-end sm:gap-10 sm:bg-transparent sm:text-left sm:text-sm"
     >
+
+    @for (item of links; track $index) {
       <li class="cursor-pointer" (click)="toggleMenu()">
-        <a
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
-        >Home </a>
-      </li>
+          <a
+          routerLink="{{item.url}}"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          >{{item.name}}</a>
+    }
+      <!-- </li>
       <li class="cursor-pointer" (click)="toggleMenu()">
         <a
         routerLink="about"
@@ -39,8 +42,8 @@
         routerLink="contact"
         routerLinkActive="active"
         >Contact</a>
-      </li>
-      <li class="sm:hidden">
+      </li> -->
+      <li class="sm:hidden text-stone">
         <button class="cursor-pointer" (click)="toggleMenu()">
           <svg
             width="50"
@@ -75,7 +78,7 @@
     <button
     id="menu-button"
     (click)="toggleMenu()"
-    class="absolute right-2 cursor-pointer sm:hidden"
+    class="absolute right-2 cursor-pointer sm:hidden text-stone"
   >
     <svg
       width="40px"

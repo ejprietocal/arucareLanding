@@ -24,6 +24,14 @@ export class NavbarComponent {
   private readonly resizeObserver = inject(ResizeObserverService);
   public screenSize : Signal<Resize> = this.resizeObserver.screenSize;
 
+  public links = [
+    { name: 'Home', url: '/' },
+    { name: 'About us', url: '/about' },
+    { name: 'Contact', url: '/contact' },
+    { name: 'Privacy Policy', url: '/privacy&policy' },
+    { name: 'Terms of Service', url: '/termsAndConditions' }
+  ];
+
 
   toggleMenu() {
     if (this.menuOpen) {

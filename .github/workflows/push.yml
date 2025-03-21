@@ -58,6 +58,6 @@ jobs:
           local-dir: ./
           server-dir: /
           exclude: |
-            dashboard/
-            .htaccess
+            github/
+            .git/
           dangerous-clean-slate: true

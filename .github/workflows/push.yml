@@ -52,7 +52,7 @@ jobs:
           password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
           port: ${{ secrets.FTP_ARUCARE_PORT }}
           protocol: ftp
-          local-dir: docs/arucarelanding/browser/
+          local-dir: ./
           server-dir: /
           exclude: |
             .github/

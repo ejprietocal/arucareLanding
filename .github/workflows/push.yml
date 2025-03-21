@@ -23,6 +23,9 @@ jobs:
       - name: 🏗️ Construir el proyecto
         run: npm run build -- --base-href "./"
 
+      - name: 📂 Copiar .htaccess a la carpeta de build
+        run: cp .htaccess docs/arucarelanding/browser/.htaccess
+
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

@@ -25,6 +25,7 @@
       <app-medicals></app-medicals>
   </section>
 
+
   <section class="mx-auto pt-20 pb-20 p-10 bg-gradient-to-r from-gray-500 to-blue-500">
       <app-team></app-team>
   </section>
@@ -33,7 +34,7 @@
     <ng-template #item let-item>
         <img
             [src]="item.itemImageSrc"
-            class="h-100 sm:h-200 object-cover" />
+            class="h-[calc(77vh)] object-cover" />
     </ng-template>
     <ng-template #thumbnail let-item>
       <img [src]="item.thumbnailImageSrc" class="h-20 object-cover"/>

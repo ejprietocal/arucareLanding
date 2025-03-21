@@ -51,7 +51,7 @@ jobs:
           EOF
 
       - name: 🚀 Subir archivos al servidor SFTP
-        uses: atcuiti/sftp-deploy-action@v2
+        uses: appleboy/ssh-action@v0.1.6
         with:
           server: ${{ secrets.SFTP_URL_ARUCARE }}
           username: ${{ secrets.SFTP_USER_ARUCARE }}

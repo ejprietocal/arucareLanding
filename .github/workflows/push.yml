@@ -50,14 +50,14 @@ jobs:
           server: ${{ secrets.FTP_URL_ARUCARE }}
           username: ${{ secrets.FTP_USER_ARUCARE }}
           password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
-          protocol: ftps
           port: ${{ secrets.FTP_ARUCARE_PORT }}
-          local-dir: ./ # Subir desde la raíz de gh-pages
-          server-dir: / # Subir al directorio raíz del servidor
+          protocol: ftp
+          local-dir: docs/arucarelanding/browser/
+          server-dir: /
           exclude: |
-            .github/**    # No subir archivos de configuración de GitHub
-          exclude-server: |
-            .htaccess     # No borrar el archivo .htaccess en el servidor
-            dashboard/**  # No borrar la carpeta dashboard en el servidor
-          dangerous-clean-slate: true  # ⚠️ Esto BORRARÁ TODO excepto los archivos excluidos
+            .github/
+            .github/workflows/
+            dashboard/
+            .htaccess
+          dangerous-clean-slate: true
 

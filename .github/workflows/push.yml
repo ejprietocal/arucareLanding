@@ -1,9 +1,10 @@
-name: Deploy Angular to GitHub Pages
+name: Deploy Angular to Server via SFTP
 
 on:
   push:
     branches:
-      - master # Ejecutar cuando se haga push en la rama "main"
+      - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +29,7 @@ jobs:
           branch: gh-pages
           folder: docs/arucarelanding/browser
 
-  deploy-ftp:
+  deploy-sftp:
     needs: build  # Espera a que termine el job "build"
     runs-on: ubuntu-latest
     steps:
@@ -36,28 +37,27 @@ jobs:
         uses: actions/checkout@v3
 
       - name: ⏳ Esperar a que la rama gh-pages se actualice
-        run: |
-          sleep 30  # Pequeña espera para asegurar que gh-pages se actualizó
+        run: sleep 30  # Pequeña espera para asegurar que gh-pages se actualizó
 
       - name: 📂 Descargar la última versión de gh-pages
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
 
-      - name: 📂 Subir archivos al servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 🚀 Subir archivos al servidor SFTP
+        uses: appleboy/scp-action@v0.1.4
         with:
-          server: ${{ secrets.FTP_URL_ARUCARE }}
+          host: ${{ secrets.FTP_URL_ARUCARE }}
           username: ${{ secrets.FTP_USER_ARUCARE }}
           password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
           port: ${{ secrets.FTP_ARUCARE_PORT }}
-          protocol: ftp
-          local-dir: ./
-          server-dir: /
-          exclude: |
-            .github/
-            .github/workflows/
-            dashboard/
-            .htaccess
-          dangerous-clean-slate: true
+          source: "*"
+          target: "/"
+          strip_components: 0  # Mantiene la estructura de archivos
+          rm: false  # Evita borrar archivos en el servidor
 
+      - name: 🧹 Limpiar archivos no deseados en el servidor
+        run: |
+          ssh -p ${{ secrets.FTP_ARUCARE_PORT }} ${{ secrets.FTP_USER_ARUCARE }}@${{ secrets.FTP_URL_ARUCARE }} <<EOF
+          find / -mindepth 1 ! -name ".htaccess" ! -path "/dashboard/*" -exec rm -rf {} +
+          EOF

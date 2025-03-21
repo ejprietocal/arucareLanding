@@ -60,5 +60,5 @@ jobs:
           local-dir: ./  # Ajusta esto según la ruta local que necesites
           server-dir: /arucare
           exclude: |
-          **/.git*
-          **/.github*
+            **/.git*
+            **/.github*

@@ -23,26 +23,13 @@
     >
 
     @for (item of links; track $index) {
-      <li class="cursor-pointer" (click)="toggleMenu()">
+      <li class="cursor-pointer text-stone" (click)="toggleMenu()">
           <a
           routerLink="{{item.url}}"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"
           >{{item.name}}</a>
     }
-      <!-- </li>
-      <li class="cursor-pointer" (click)="toggleMenu()">
-        <a
-        routerLink="about"
-        routerLinkActive="active"
-        >About us</a>
-      </li>
-      <li class="cursor-pointer" (click)="toggleMenu()">
-        <a
-        routerLink="contact"
-        routerLinkActive="active"
-        >Contact</a>
-      </li> -->
       <li class="sm:hidden text-stone">
         <button class="cursor-pointer" (click)="toggleMenu()">
           <svg

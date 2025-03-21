@@ -65,7 +65,10 @@
   @apply
   text-stone-500
 }
-
+.hipervincle{
+  @apply
+  text-sm text-blue-500 font-light w-fit  p-1 flex items-center gap-1
+}
 .textSand{
   @apply
   bg-gradient-to-r from-orange-300 to-sky-500 bg-clip-text text-transparent

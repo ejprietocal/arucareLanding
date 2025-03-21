@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { ResponsiveOptions } from '../../../interfaces/responsive-options';
 import { ResponsiveService } from '../../../services/responsive.service';
 import { GalleriaModule } from 'primeng/galleria';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 
@@ -26,7 +27,9 @@ import { GalleriaModule } from 'primeng/galleria';
     DividerModule,
     TeamComponent,
     ButtonModule,
-    GalleriaModule
+    GalleriaModule,
+    RouterLink,
+    RouterLinkActive
   ],
   providers: [],
   templateUrl: './home.component.html',

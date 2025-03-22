@@ -102,7 +102,7 @@ jobs:
           password: ${{ secrets.FTP_USER_PASS_ARUCARE }}  # Contraseña FTP
           port: 21  # Puerto del servidor FTP (por defecto es 21)
           protocol: ftp  # Protocolo FTP (también se puede usar sftp si tienes configuración segura)
-          local-dir: ./dashboard  # Carpeta local donde están los archivos listos para desplegar
+          local-dir: ./dashboard/  # Carpeta local donde están los archivos listos para desplegar
           server-dir: /dashboard  # Carpeta remota en el servidor FTP donde se subirán los archivos
           exclude: |
             **/.git*

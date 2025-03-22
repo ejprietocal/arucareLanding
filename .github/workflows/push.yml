@@ -67,7 +67,7 @@ jobs:
         with:
           repository: ejprietocal/arucaredashboard  # Nombre del repositorio
           ref: master  # La rama "master" de "arucaredashboard"
-          token: ${{ secrets.SECRET_GITHUB_TOKEN }}  # Usa el token de autenticación
+          token: ${{ secrets.GITHUB_TOKEN }}  # Usa el token de autenticación
 
       - name: ⚙️ Configurar Node.js
         uses: actions/setup-node@v3
@@ -77,8 +77,8 @@ jobs:
       - name: 📦 Instalar dependencias de Node.js
         run: npm install  # Instalar las dependencias de Node.js definidas en package.json
 
-      - name: 🏗️ Ejecutar el proyecto (npm run build)
-        run: npm run build  # Ejecuta el proyecto y genera los archivos necesarios, como los archivos estáticos
+      - name: 🏗️ Ejecutar el proyecto (npm run dev)
+        run: npm run dev  # Ejecuta el proyecto y genera los archivos necesarios, como los archivos estáticos
 
       - name: 📂 Preparar los archivos para el despliegue
         run: |
@@ -94,25 +94,29 @@ jobs:
           cp favicon.ico dashboard/
           cp -r database dashboard/
 
-      - name: 🔄 Cambiar a la rama "gh-pages" de "arucarelanding"
-        run: |
-          git remote add arucareLanding https://github.com/ejprietocal/arucarelanding.git  # Agregar el repositorio remoto
-          git fetch arucareLanding gh-pages  # Obtener la rama "gh-pages" del repositorio "arucarelanding"
-          git checkout gh-pages  # Cambiar a la rama "gh-pages" de "arucarelanding"
+      - name: 🚀 Crear la carpeta "dashboard" en el servidor FTP (si no existe)
+        uses: curlftpfs/curlftpfs@v1
+        with:
+          server: ${{ secrets.FTP_URL_ARUCARE }}  # URL de tu servidor FTP
+          username: ${{ secrets.FTP_USER_ARUCARE }}  # Usuario FTP
+          password: ${{ secrets.FTP_USER_PASS_ARUCARE }}  # Contraseña FTP
+          port: 21  # Puerto del servidor FTP (por defecto es 21)
+          protocol: ftp  # Protocolo FTP (también se puede usar sftp si tienes configuración segura)
+          remote-dir: /dashboard  # La carpeta remota a crear
+          command: "mkdir -p /dashboard"  # Comando FTP para crear la carpeta si no existe
 
-      - name: 📂 Copiar los archivos a la rama "gh-pages"
-        run: |
-          # Copiar los archivos generados de "dashboard" a la raíz de la rama "gh-pages"
-          cp -r dashboard/* .
+      - name: 🚀 Subir archivos al servidor FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_URL_ARUCARE }}  # URL de tu servidor FTP
+          username: ${{ secrets.FTP_USER_ARUCARE }}  # Usuario FTP
+          password: ${{ secrets.FTP_USER_PASS_ARUCARE }}  # Contraseña FTP
+          port: 21  # Puerto del servidor FTP (por defecto es 21)
+          protocol: ftp  # Protocolo FTP (también se puede usar sftp si tienes configuración segura)
+          local-dir: ./dashboard  # Carpeta local donde están los archivos listos para desplegar
+          server-dir: /dashboard  # Carpeta remota en el servidor FTP donde se subirán los archivos
+          exclude: |
+            **/.git*
+            **/.github*
 
-      - name: ⚙️ Configurar identidad de Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@github.com"
-
-      - name: 🚀 Hacer commit y push de los cambios a la rama "gh-pages" de "arucarelanding"
-        run: |
-          git add .  # Agregar todos los cambios
-          git commit -m "Deploy dashboard to gh-pages"  # Commit de los archivos
-          git push arucareLanding gh-pages  # Subir los cambios a la rama "gh-pages"
 

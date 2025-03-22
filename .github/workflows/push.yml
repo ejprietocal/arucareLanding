@@ -72,7 +72,7 @@ jobs:
       - name: ⚙️ Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22  # Usa la versión de Node.js que necesites
+          node-version: 16  # Usa la versión de Node.js que necesites
 
       - name: 📦 Instalar dependencias de Node.js
         run: npm install  # Instalar las dependencias de Node.js definidas en package.json
@@ -94,17 +94,6 @@ jobs:
           cp favicon.ico dashboard/
           cp -r database dashboard/
 
-      - name: 🚀 Crear la carpeta "dashboard" en el servidor FTP (si no existe)
-        uses: curlftpfs/curlftpfs@v1
-        with:
-          server: ${{ secrets.FTP_URL_ARUCARE }}  # URL de tu servidor FTP
-          username: ${{ secrets.FTP_USER_ARUCARE }}  # Usuario FTP
-          password: ${{ secrets.FTP_USER_PASS_ARUCARE }}  # Contraseña FTP
-          port: 21  # Puerto del servidor FTP (por defecto es 21)
-          protocol: ftp  # Protocolo FTP (también se puede usar sftp si tienes configuración segura)
-          remote-dir: /dashboard  # La carpeta remota a crear
-          command: "mkdir -p /dashboard"  # Comando FTP para crear la carpeta si no existe
-
       - name: 🚀 Subir archivos al servidor FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -118,5 +107,11 @@ jobs:
           exclude: |
             **/.git*
             **/.github*
+
+        # Crear la carpeta remota en FTP si no existe (se logra al subir archivos en esa carpeta)
+      - name: 🚀 Crear la carpeta remota en el servidor FTP si no existe
+        run: |
+          curl --ftp-create-dirs -u ${{ secrets.FTP_USER_ARUCARE }}:${{ secrets.FTP_USER_PASS_ARUCARE }} ftp://${{ secrets.FTP_URL_ARUCARE }}/dashboard/
+
 
 

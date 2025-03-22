@@ -1,4 +1,4 @@
-name: Deploy Angular to GitHub Pages and SFTP
+name: Deploy Angular to GitHub Pages and FTP
 
 on:
   push:
@@ -32,32 +32,30 @@ jobs:
           branch: gh-pages
           folder: docs/arucarelanding/browser
 
-  deploy-sftp:
+  deploy-ftp:
     needs: build  # Espera a que termine el job "build"
     runs-on: ubuntu-latest
     steps:
       - name: 🔄 Checkout del repositorio
         uses: actions/checkout@v3
 
+      - name: ⏳ Esperar a que la rama gh-pages se actualice
+        run: sleep 30  # Espera para asegurar que gh-pages se actualizó
+
       - name: 📂 Descargar la última versión de gh-pages
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
 
-      - name: 🧹 Borrar archivos en el servidor (excepto dashboard)
-        run: |
-          ssh -i ${{ secrets.SSH_IPAGE_CONEXION }} -o StrictHostKeyChecking=no -p 2222 ${{ secrets.SFTP_USER_ARUCARE }}@${{ secrets.SFTP_URL_ARUCARE }} <<EOF
-          find / -mindepth 1 ! -path "/dashboard/*" -delete
-          EOF
-
-      - name: 🚀 Subir archivos al servidor SFTP
-        uses: appleboy/ssh-action@v0.1.6
+      - name: 🚀 Subir archivos al servidor FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.SFTP_URL_ARUCARE }}
-          username: ${{ secrets.SFTP_USER_ARUCARE }}
-          private-key: ${{ secrets.SSH_IPAGE_CONEXION }}
-          port: 2222
-          local-dir: ./  # Ajusta esto según la ruta local que necesites
+          server: ${{ secrets.FTP_URL_ARUCARE }}
+          username: ${{ secrets.FTP_USER_ARUCARE }}
+          password: ${{ secrets.FTP_USER_PASS_ARUCARE }}
+          port: 21
+          protocol: ftp
+          local-dir: ./
           server-dir: /arucare
           exclude: |
             **/.git*

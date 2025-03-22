@@ -44,6 +44,10 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages
 
+      - name: 🧹 Borrar todos los archivos en el servidor FTP
+        run: |
+          curl -u ${{ secrets.FTP_USER_ARUCARE }}:${{ secrets.FTP_USER_PASS_ARUCARE }} ftp://${{ secrets.FTP_URL_ARUCARE }}/ -Q "DELE *" # Elimina todos los archivos
+
       - name: 🚀 Subir archivos al servidor FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

@@ -86,7 +86,7 @@ jobs:
           mkdir -p dashboard
 
           # Copiar los archivos generados por Node.js y otros archivos necesarios a la carpeta "dashboard"
-          cp -r public/* dashboard/  # Copiar los archivos generados en "public"
+          cp -r public dashboard/  # Copiar los archivos generados en "public"
           cp -r PHPMailer dashboard/
           cp index.php dashboard/
           cp dashboard.php dashboard/

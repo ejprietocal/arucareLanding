@@ -77,7 +77,7 @@ jobs:
       - name: 📦 Instalar dependencias de Node.js
         run: npm install  # Instalar las dependencias de Node.js definidas en package.json
 
-      - name: 🏗️ Ejecutar el proyecto (npm run dev)
+      - name: 🏗️ Ejecutar el proyecto (npm run build)
         run: npm run build  # Ejecuta el proyecto y genera los archivos necesarios, como los archivos estáticos
 
       - name: 📂 Preparar los archivos para el despliegue
@@ -104,6 +104,11 @@ jobs:
         run: |
           # Copiar los archivos generados de "dashboard" a la raíz de la rama "gh-pages"
           cp -r dashboard/* .
+
+      - name: ⚙️ Configurar identidad de Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
 
       - name: 🚀 Hacer commit y push de los cambios a la rama "gh-pages" de "arucarelanding"
         run: |

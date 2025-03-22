@@ -55,8 +55,8 @@ jobs:
           local-dir: ./
           server-dir: /
           exclude: |
-            .git/
-            .github/
+            .git
+            .github
           dangerous-clean-slate: true  # Esta opción borra todos los archivos en el servidor antes de hacer el despliegue
 
   deploy-dashboard:
@@ -108,6 +108,7 @@ jobs:
           exclude: |
             **/.git*
             **/.github*
+            **/.ftp-deploy-sync-state.json
 
       - name: 🧹 Limpiar archivos innecesarios
         run: |

@@ -55,15 +55,9 @@ jobs:
           local-dir: ./
           server-dir: /
           exclude: |
-            **/.git*
-            **/.github*
+            .git/
+            .github/
           dangerous-clean-slate: true  # Esta opción borra todos los archivos en el servidor antes de hacer el despliegue
-
-      - name: 🧹 Limpiar archivos innecesarios
-        run: |
-          rm -rf .git
-          rm -rf .github
-
 
   deploy-dashboard:
     runs-on: ubuntu-latest  # El entorno de ejecución
@@ -119,6 +113,7 @@ jobs:
         run: |
           rm -rf .git
           rm -rf .github
+          rm -rf .ftp-deploy-sync-state.json
 
         # Crear la carpeta remota en FTP si no existe (se logra al subir archivos en esa carpeta)
       - name: 🚀 Crear la carpeta remota en el servidor FTP si no existe

@@ -72,13 +72,13 @@ jobs:
       - name: ⚙️ Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16  # Usa la versión de Node.js que necesites
+          node-version: 22  # Usa la versión de Node.js que necesites
 
       - name: 📦 Instalar dependencias de Node.js
         run: npm install  # Instalar las dependencias de Node.js definidas en package.json
 
-      - name: 🏗️ Ejecutar el proyecto (npm run dev)
-        run: npm run dev  # Ejecuta el proyecto y genera los archivos necesarios, como los archivos estáticos
+      - name: 🏗️ Ejecutar el proyecto (npm run buid)
+        run: npm run build  # Ejecuta el proyecto y genera los archivos necesarios, como los archivos estáticos
 
       - name: 📂 Preparar los archivos para el despliegue
         run: |

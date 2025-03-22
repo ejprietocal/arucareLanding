@@ -62,13 +62,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy-ftp  # Espera a que termine el job "deploy-ftp"
     steps:
-      - name: 🔄 Checkout del repositorio
+      - name: 🔄 Checkout del repositorio principal (arucaredashboard)
         uses: actions/checkout@v3
 
-      - name: 📂 Descargar la última versión de arucaredashboard
+      - name: 📂 Agregar el repositorio remoto "arucarelanding"
         run: |
-          git fetch origin arucaredashboard
-          git checkout arucaredashboard  # Se asegura de que estemos trabajando sobre la rama arucaredashboard
+          # Agregar el repositorio "arucarelanding" como remoto
+          git remote add arucarelanding https://github.com/ejprietocal/arucarelanding.git  # Cambia "usuario" por el nombre de usuario en GitHub
+          git fetch arucarelanding  # Obtiene las ramas del repositorio arucarelanding
+
+      - name: 📂 Cambiar a la rama "main" de arucaredashboard
+        run: |
+          git checkout -b main arucaredashboard/main  # Crea una nueva rama local basada en la rama "main" de arucaredashboard
 
       - name: ⚙️ Configurar Node.js
         uses: actions/setup-node@v3
@@ -95,19 +100,19 @@ jobs:
           cp favicon.ico dashboard/
           cp -r database dashboard/
 
-      - name: 🔄 Cambiar a la rama gh-pages
+      - name: 🔄 Cambiar a la rama gh-pages de arucarelanding
         run: |
-          git fetch origin gh-pages
-          git checkout gh-pages  # Ahora cambiamos a la rama gh-pages
+          git fetch arucareLanding gh-pages
+          git checkout gh-pages  # Cambiamos a la rama gh-pages del repositorio arucareLanding
 
       - name: 📂 Copiar los cambios a la rama gh-pages
         run: |
           # Copiar los archivos y carpetas de "dashboard" a la raíz de gh-pages
           cp -r dashboard/* .
 
-      - name: 🚀 Hacer commit y push de los cambios a gh-pages
+      - name: 🚀 Hacer commit y push de los cambios a gh-pages de arucarelanding
         run: |
           git add .
           git commit -m "Deploy dashboard to gh-pages"
-          git push origin gh-pages
+          git push arucareLanding gh-pages
 

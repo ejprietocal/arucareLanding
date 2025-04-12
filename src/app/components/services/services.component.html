@@ -1,0 +1,11 @@
+<div class="w-full min-h-[70vh] pt-20 sm:animate-fade-in pb-20">
+
+<div class="max-w-6xl grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-3 gap-y-20">
+
+  @for(service of services ;track $index) {
+    <app-card-service [title]="service.title" [description]="service.description" [image]="service.image" [details]="service.details"></app-card-service>
+  }
+
+</div>
+
+</div>

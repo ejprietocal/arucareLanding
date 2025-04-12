@@ -1,7 +1,7 @@
 
 
 <header class="sticky shadow-lg backdrop-blur-md bg-gradient-to-b from-orange-200/70 to-blue-100/70 top-0 h-16 flex items-center text-sm z-50">
-  <nav class="w-dvw mx-auto  flex justify-between items-center  md:px-24">
+  <nav class="w-dvw mx-auto  flex justify-between items-center  lg:px-24">
     <div class="logo">
       <a
         routerLink="/"
@@ -13,13 +13,13 @@
 
     <ul
     [ngClass]="{
-      flex: menuOpen || isClosing || screenSize().width >= 768,
-      'animate-slide-in': menuOpen && !isClosing && screenSize().width < 768,
-      'animate-slide-out': isClosing && screenSize().width < 768,
+      flex: menuOpen || isClosing || screenSize().width > 1024,
+      'animate-slide-in': menuOpen && !isClosing && screenSize().width < 1024,
+      'animate-slide-out': isClosing && screenSize().width < 1024,
       hidden: !menuOpen && !isClosing,
-      'bg-gradient-to-b' : screenSize().width <= 768
+      'bg-gradient-to-b' : screenSize().width < 1024
     }"
-    class="absolute top-0 h-dvh w-full  from-stone-300 to-sky-400 flex-col justify-around text-center text-2xl font-light duration-500 md:static md:flex md:h-auto md:w-3/4 md:flex-row md:justify-end md:gap-10 md:bg-transparent md:text-left md:text-sm"
+    class="absolute top-0 h-dvh w-full  from-stone-300 to-sky-400 flex-col justify-around text-center text-2xl font-light duration-500 lg:static lg:flex lg:h-auto lg:w-3/4 lg:flex-row lg:justify-end lg:gap-10 lg:bg-transparent lg:text-left lg:text-sm"
     >
 
     @for (item of links; track $index) {
@@ -30,7 +30,7 @@
           [routerLinkActiveOptions]="{exact: true}"
           >{{item.name}}</a>
     }
-      <li class="md:hidden text-stone">
+      <li class="lg:hidden text-stone">
         <button class="cursor-pointer" (click)="toggleMenu()">
           <svg
             width="50"
@@ -65,7 +65,7 @@
     <button
     id="menu-button"
     (click)="toggleMenu()"
-    class="absolute right-2 cursor-pointer md:hidden text-stone"
+    class="absolute right-2 cursor-pointer lg:hidden text-stone"
   >
     <svg
       width="40px"

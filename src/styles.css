@@ -81,7 +81,6 @@
   @apply
   bg-gradient-to-r from-orange-300 to-sky-200
 }
-
 .active{
   @apply text-blue-500
 }

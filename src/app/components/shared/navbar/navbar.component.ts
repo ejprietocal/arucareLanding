@@ -27,6 +27,7 @@ export class NavbarComponent {
   public links = [
     { name: 'Home', url: '/' },
     { name: 'About us', url: '/about' },
+    { name: 'Services', url: '/services' },
     { name: 'Contact', url: '/contact' },
     { name: 'Privacy Policy', url: '/privacy&policy' },
     { name: 'Terms of Service', url: '/termsAndConditions' }

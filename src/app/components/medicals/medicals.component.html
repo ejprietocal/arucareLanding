@@ -1,4 +1,17 @@
-<div class="flex flex-wrap justify-center gap-8 ">
+<div class="grid  sm:grid-cols-2 md:grid-cols-4 p-3 justify-center gap-5 ">
+  <div
+      (click)="this.router.navigate(['services'])"
+      pAnimateOnScroll
+      enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
+      leaveClass="animate-leave fade-out-0"
+      class="flex flex-col border border-surface cursor-pointer shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+  >
+      <div class="rounded-full bg-primary w-12 h-12 flex items-center justify-center bg-gradient-to-r textSand">
+          <span class="fa-solid fa-user-doctor text-4xl"></span>
+      </div>
+      <span class="text-xl font-black bg-gradient-to-r textSand">Doctor Services</span>
+      <span class="text-sm text-muted-color text-center font-extralight">Professional doctor services—routine check-ups, medical consultations, and personalized care in the comfort of your stay.</span>
+  </div>
   <div
       (click)="this.router.navigate(['services'])"
       pAnimateOnScroll

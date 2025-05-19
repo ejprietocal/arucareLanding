@@ -13,6 +13,12 @@ export class ServicesComponent {
 
   services = [
     {
+      title: 'Doctor Services',
+      description: 'Professional doctor services—routine check-ups, medical consultations, and personalized care in the comfort of your stay.',
+      details: 'Professional doctor services—routine check-ups, medical consultations, and personalized care in the comfort of your stay.',
+      image: 'assets/images/logoTrinity.png'
+    },
+    {
       title: 'Description IV',
       description: 'IV Hydration Therapy delivers essential fluids, electrolytes and vitamins directly into your bloodstream, promoting rapid recovery and enhanced well-being. Ideal for boosting immunity and rejuvenating after intense activities or dehydration.',
       details: 'IV\'s that we offer: Hangover IV, Dehydration recovery IV, Immunity boost with vit. C. muscle recovery booster with magnesium',

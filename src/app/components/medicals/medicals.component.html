@@ -1,37 +1,41 @@
 <div class="flex flex-wrap justify-center gap-8 ">
-  <div pAnimateOnScroll
+  <div
+      (click)="this.router.navigate(['services'])"
+      pAnimateOnScroll
       enterClass="animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000"
       leaveClass="animate-leave fade-out-0"
-      class="flex flex-col border border-surface shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+      class="flex flex-col border border-surface cursor-pointer shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
   >
       <div class="rounded-full bg-primary w-12 h-12 flex items-center justify-center bg-gradient-to-r textSand">
-          <i class="pi pi-user !text-2xl"></i>
+          <span class="fa-solid fa-syringe text-4xl"></span>
       </div>
-      <span class="text-xl font-black bg-gradient-to-r textSand">Individual</span>
-      <span class="text-sm text-muted-color text-center font-extralight">Book and manage your medical appointments easily.</span>
+      <span class="text-xl font-black bg-gradient-to-r textSand">Description IV</span>
+      <span class="text-sm text-muted-color text-center font-extralight">Revitalize fast with our IV therapies—hydration, immunity, hangover, and muscle recovery boosts delivered directly to you.</span>
   </div>
   <div
+      (click)="this.router.navigate(['services'])"
       pAnimateOnScroll
       enterClass="animate-enter fade-in-10 animate-duration-1000"
       leaveClass="animate-leave fade-out-0"
-      class="flex flex-col border border-surface shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+      class="flex flex-col border border-surface cursor-pointer shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
   >
       <div class="rounded-full bg-primary w-12 h-12 flex items-center justify-center bg-gradient-to-r textSand">
-          <i class="pi pi-users !text-2xl"></i>
+          <span class="fa-solid fa-user-nurse text-4xl"></span>
       </div>
-      <span class="text-xl font-black bg-gradient-to-r textSand">Team</span>
-      <span class="text-sm text-muted-color text-center font-extralight">Coordinate schedules and patient bookings seamlessly.</span>
+      <span class="text-xl font-black bg-gradient-to-r textSand">Nurse Services</span>
+      <span class="text-sm text-muted-color text-center font-extralight">We offer personalized nurse services—ADL assistance, wound care, and respite care—all in the comfort of your accommodation, tailored to your needs and peace of mind.</span>
   </div>
   <div
+      (click)="this.router.navigate(['services'])"
       pAnimateOnScroll
-      enterClass="animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000"
+      enterClass="animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000 "
       leaveClass="animate-leave fade-out-0"
-      class="flex flex-col border border-surface shadow-lg bg-gradient-to-r from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+      class="flex flex-col border border-surface shadow-lg bg-gradient-to-r cursor-pointer from-slate-50 to-slate-200 justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
   >
       <div class="rounded-full bg-primary  w-12 h-12 flex bg-gradient-to-r textSand items-center justify-center">
-          <span class="pi pi-building !text-2xl"></span>
+        <span class="fa-solid fa-spa text-4xl"></span>
       </div>
-      <span class="text-xl font-black bg-gradient-to-r textSand">Enterprise</span>
-      <span class="text-sm text-muted-color text-center font-extralight">Scalable solutions for clinics and hospitals.</span>
+      <span class="text-xl font-black bg-gradient-to-r textSand">Physiotherapy</span>
+      <span class="text-sm text-muted-color text-center font-extralight">Roots Therapy brings expert rehab services to your door—even during the holidays. Personalized care, flexible hours, and experienced therapists focused on your recovery, comfort, and well-being.</span>
   </div>
 </div>

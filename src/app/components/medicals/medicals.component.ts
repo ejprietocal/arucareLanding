@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
@@ -13,4 +14,5 @@ import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 })
 export class MedicalsComponent {
 
+  readonly router = inject(Router);
 }

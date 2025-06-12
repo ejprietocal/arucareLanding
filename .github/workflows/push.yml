@@ -26,13 +26,16 @@ jobs:
           URL_ENDPOINT: ${{ secrets.URL_ENDPOINT }}
           SECURITY_KEY: ${{ secrets.SECURITY_KEY }}
           SECURIY_KEY_TEST: ${{ secrets.SECURIY_KEY_TEST }}
+          URL_DOMAIN: ${{ secrets.URL_DOMAIN }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
 
       - name: 🏗️ Construir el proyecto
         run: npm run build -- --base-href "/"
 
-      - name: 📂 Copiar .htaccess a la carpeta de build
-        run: cp .htaccess docs/arucarelanding/browser/.htaccess
-
+      - name: 📂 Copiar .htaccess y el proxy a la carpeta de build
+        run: |
+          cp .htaccess docs/arucarelanding/browser/.htaccess
+          cp proxy.php docs/arucarelanding/browser/proxy.php
       - name: 🚀 Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

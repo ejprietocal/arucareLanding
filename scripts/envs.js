@@ -9,6 +9,8 @@ function generateEnvFile(env, outputPath) {
     'URL_ENDPOINT',
     'SECURITY_KEY',
     'SECURIY_KEY_TEST',
+    'URL_DOMAIN',
+    'PROXY_URL',
   ];
 
   for (const key of requiredKeys) {
@@ -22,6 +24,8 @@ export const environment = {
   URL_ENDPOINT: '${env.URL_ENDPOINT}',
   SECURITY_KEY: '${env.SECURITY_KEY}',
   SECURIY_KEY_TEST: '${env.SECURIY_KEY_TEST}',
+  URL_DOMAIN: '${env.URL_DOMAIN}',
+  PROXY_URL: '${env.PROXY_URL}',
 };
 `;
 

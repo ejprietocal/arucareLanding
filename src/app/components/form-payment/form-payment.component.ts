@@ -93,10 +93,8 @@ export class FormPaymentComponent {
 
           if (result['response_code'] === '100') {
             this.toastr.success(result['responsetext']);
-            this.router.navigate(['checkout']);
           } else {
             this.toastr.error(result['responsetext'] || 'Error en la transacción');
-            this.router.navigate(['checkout']);
           }
 
           this.loaderService.hideLoader();

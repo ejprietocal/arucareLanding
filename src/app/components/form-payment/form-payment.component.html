@@ -28,8 +28,13 @@
           <input type="email" id="email" class="input-behavior" formControlName="email"
                  [ngClass]="{'border-red-500!': form.get('email')?.hasError('required') && form.get('email')?.touched}"
                  placeholder="example@example.com"
-
                  required>
+          @if( form.get('email')?.hasError('required') && form.get('email')?.touched){
+            <span class="text-red-500">Please enter your Email</span>
+          }
+          @if( form.get('email')?.hasError('email') && form.get('email')?.touched){
+            <span class="text-red-500">Your Email is not valid</span>
+          }
         </div>
         <div class="col-span-6 sm:col-span-3">
           <label for="phone" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Phone</label>
@@ -63,21 +68,35 @@
 
         <div class="col-span-4 sm:col-span-3">
           <label for="ccnumber" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CC Number</label>
-          <input type="text" id="ccnumber" class="input-behavior" formControlName="ccnumber"
-                 [ngClass]="{'border-red-500!': form.get('ccnumber')?.hasError('required') && form.get('ccnumber')?.touched}"
-                 placeholder="XXXX XXXX XXXX XXXX"
-                 required>
+          <input type="number" id="ccnumber" class="input-behavior" formControlName="ccnumber"
+                  [ngClass]="{'border-red-500!': form.get('ccnumber')?.hasError('required') && form.get('ccnumber')?.touched || form.get('ccnumber')?.hasError('pattern') && form.get('ccnumber')?.touched}"
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  required>
+          @if( form.get('ccnumber')?.hasError('required') && form.get('ccnumber')?.touched){
+            <span class="text-red-500">Please enter your CC Number</span>
+          }
+          @if( form.get('ccnumber')?.hasError('pattern') && form.get('ccnumber')?.touched){
+            <span class="text-red-500">Your CC Number is not valid</span>
+          }
         </div>
         <div class="col-span-2 sm:col-span-3">
           <label for="ccexp" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CC Expiration</label>
           <input type="text" id="ccexp" class="input-behavior" formControlName="ccexp"
-                 [ngClass]="{'border-red-500!': form.get('ccexp')?.hasError('required') && form.get('ccexp')?.touched}"
+                 [ngClass]="{'border-red-500!': form.get('ccexp')?.hasError('required') && form.get('ccexp')?.touched || form.get('ccexp')?.hasError('pattern') && form.get('ccexp')?.touched}"
                  placeholder="MM/YY"
                  required>
+
+          @if( form.get('ccexp')?.hasError('required') && form.get('ccexp')?.touched){
+            <span class="text-red-500">Please enter your CC Expiration</span>
+          }
+          @if( form.get('ccexp')?.hasError('pattern') && form.get('ccexp')?.touched){
+            <span class="text-red-500">Not valid use "MM/YY" format</span>
+          }
+
         </div>
         <div class="col-span-6 sm:col-span-3">
           <label for="cvv" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CVV</label>
-          <input type="text" id="cvv" class="input-behavior" formControlName="cvv"
+          <input type="number" id="cvv" class="input-behavior" formControlName="cvv"
                  [ngClass]="{'border-red-500!': form.get('cvv')?.hasError('required') && form.get('cvv')?.touched}"
                  placeholder="CVV"
                  required
@@ -87,9 +106,17 @@
         <div class="col-span-6 sm:col-span-3">
           <label for="amount" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Amount</label>
           <input type="text" id="amount" class="input-behavior" formControlName="amount"
-                 [ngClass]="{'border-red-500!': form.get('amount')?.hasError('required') && form.get('amount')?.touched}"
+                 [ngClass]="{'border-red-500!': form.get('amount')?.hasError('required') && form.get('amount')?.touched || form.get('amount')?.hasError('pattern') && form.get('amount')?.touched}"
                  placeholder="$0.00"
+                 inputmode="decimal" pattern="[0-9]*[.]?[0-9]*"
                  required>
+
+          @if( form.get('amount')?.hasError('required') && form.get('amount')?.touched){
+            <span class="text-red-500">Please enter the amount</span>
+          }
+          @if( form.get('amount')?.hasError('pattern') && form.get('amount')?.touched){
+            <span class="text-red-500">Your amount is not valid</span>
+          }
         </div>
       </div>
       <div class="flex justify-center sm:justify-end w-full gap-3 mt-10 mb-5">

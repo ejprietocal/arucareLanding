@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://cxpay.transactiongateway.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

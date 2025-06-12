@@ -6,6 +6,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TermsServicesComponent } from './components/terms-services/terms-services.component';
 import { ServicesComponent } from './components/services/services.component';
 import { FormPaymentComponent } from './components/form-payment/form-payment.component';
+import ResumePaymentComponent from './components/resume-payment/resume-payment.component';
 
 export const routes: Routes = [
     {   path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {   path: 'termsAndConditions', component: TermsServicesComponent },
     {   path : 'services', component: ServicesComponent },
     {   path: 'checkout', component: FormPaymentComponent },
+    {   path: 'resume', component: ResumePaymentComponent },
     {   path: '**', redirectTo: '' }
 ];

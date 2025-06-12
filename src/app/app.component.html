@@ -1,9 +1,9 @@
 
-@if (!this.route.url.includes('checkout')){
+@if (!this.route.url.includes('checkout') && !this.route.url.includes('resume')){
   <app-navbar></app-navbar>
 }
 <router-outlet />
-@if (!this.route.url.includes('checkout')){
+@if (!this.route.url.includes('checkout') && !this.route.url.includes('resume')){
   <app-footer ></app-footer>
 }
 

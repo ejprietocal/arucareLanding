@@ -67,7 +67,14 @@ export class FormPaymentComponent {
           });
 
           if (result['response_code'] === '100') {
-            this.toastr.success(result['responsetext']);
+              this.toastr.success(result['responsetext']);
+              this.router.navigate(['resume'],{
+                queryParams: {
+                  ...result,
+                  amount: this.form.get('amount')?.value,
+                  date : new Date()
+                }
+              });
 
           } else {
             this.toastr.error(result['responsetext'] || 'Error en la transacción');
@@ -93,9 +100,19 @@ export class FormPaymentComponent {
 
           if (result['response_code'] === '100') {
             this.toastr.success(result['responsetext']);
+            this.router.navigate(['resume'],{
+                queryParams: {
+                  ...result,
+                  amount: this.form.get('amount')?.value,
+                  date : new Date()
+
+                }
+            });
           } else {
             this.toastr.error(result['responsetext'] || 'Error en la transacción');
           }
+
+          console.log(result);
 
           this.loaderService.hideLoader();
         },

@@ -1,0 +1,18 @@
+<div class="w-full min-h-screen flex justify-center items-center pt-10 pb-10 pe-3 ps-3">
+
+<div class="w-full max-w-screen-sm border-2 border-gray-300 rounded-2xl shadow-xl p-6 bg-white space-y-4">
+  <h3 class="text-2xl font-semibold text-center text-gray-800">
+    <span class="fa fa-credit-card mr-2"></span>Payment Summary
+  </h3>
+
+  <div class="text-gray-700 space-y-2">
+    <p><span class="fa fa-key mr-2 text-blue-500"></span><span class="font-medium">Authcode:</span> {{ params['authcode'] }}</p>
+    <p><span class="fa fa-hashtag mr-2 text-green-500"></span><span class="font-medium">Transaction ID:</span> {{ params['transactionid'] }}</p>
+    <p><span class="fa fa-file-alt mr-2 text-yellow-500"></span><span class="font-medium">Order ID:</span> {{ params['orderid'] }}</p>
+    <p><span class="fa fa-dollar-sign mr-2 text-indigo-500"></span><span class="font-medium">Amount:</span> {{ params['amount'] | currency }}</p>
+    <p><span class="fa fa-calendar-alt mr-2 text-purple-500"></span><span class="font-medium">Date:</span> {{ params['date'] | date:'MM/dd/yyyy HH:mm:ss' }}</p>
+  </div>
+</div>
+
+
+</div>

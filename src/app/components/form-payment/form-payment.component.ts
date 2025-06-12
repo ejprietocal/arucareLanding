@@ -27,6 +27,7 @@ export class FormPaymentComponent {
   private readonly router = inject(Router);
 
   private paymentSuscription?: Subscription ;
+  private changesSuscription?: Subscription ;
   loaderService = inject(LoaderService);
 
   form = this.fb.group({
@@ -125,7 +126,23 @@ export class FormPaymentComponent {
 
   }
 
+  ngOnInit(): void {
+   this.changesSuscription = this.form.get('ccexp')?.valueChanges.subscribe((value) => {
+    if (!value) return;
+
+    const cleaned = value.replace(/[^0-9]/g, '');
+
+    if (cleaned.length >= 3) {
+      const formatted = `${cleaned.substring(0, 2)}/${cleaned.substring(2, 4)}`;
+      if (value !== formatted) {
+        this.form.get('ccexp')?.setValue(formatted, { emitEvent: false });
+      }
+    }
+  });
+}
+
   ngOnDestroy(){
     this.paymentSuscription?.unsubscribe();
+    this.changesSuscription?.unsubscribe();
   }
 }

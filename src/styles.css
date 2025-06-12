@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
-
+@import 'ngx-toastr/toastr';
 
 @theme {
   --animate-slide-in: slice-in .5s ease-in-out;

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ToastService } from '../../services/toastr.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FormPaymentService } from 'src/app/services/form-payment.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 @Component({
@@ -20,10 +22,12 @@ import { FormPaymentService } from 'src/app/services/form-payment.service';
 export class FormPaymentComponent {
 
   private readonly fb = inject(FormBuilder);
-  private readonly toastr = inject(ToastService);
+  private readonly toastr = inject(ToastrService);
   private readonly formPaymentService = inject(FormPaymentService);
+  private readonly router = inject(Router);
 
   private paymentSuscription?: Subscription ;
+  loaderService = inject(LoaderService);
 
   form = this.fb.group({
     ccnumber: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
@@ -41,19 +45,72 @@ export class FormPaymentComponent {
 
   onSubmit() {
 
+    this.loaderService.showLoader();
+
+    if(this.form.invalid){
+      this.toastr.error('Please fill all the fields');
+      this.form.markAllAsTouched();
+      this.loaderService.hideLoader();
+      return;
+    }
+
+
     if(this.form.get('ccnumber')!.value == '4111111111111111'){
       this.paymentSuscription = this.formPaymentService.submitPaymentTest(this.form.value).subscribe({
         next: (data) => {
-          console.log(data);
+
+          const result: Record<string, string> = {};
+
+          data.response.split('&').forEach((pair : any) => {
+            const [key, value] = pair.split('=');
+            result[key] = decodeURIComponent(value || '');
+          });
+
+          if (result['response_code'] === '100') {
+            this.toastr.success(result['responsetext']);
+
+          } else {
+            this.toastr.error(result['responsetext'] || 'Error en la transacción');
+          }
+
+          this.loaderService.hideLoader();
+
         },
         error: (error) => {
           console.log(error);
+          this.loaderService.hideLoader();
         }
       });
     }
     else{
-      this.formPaymentService.submitPayment(this.form.value);
+      this.paymentSuscription = this.formPaymentService.submitPayment(this.form.value).subscribe({
+        next: (data) => {
+          const result: Record<string, string> = {};
+          data.response.split('&').forEach((pair : any) => {
+            const [key, value] = pair.split('=');
+            result[key] = decodeURIComponent(value || '');
+          });
+
+          if (result['response_code'] === '100') {
+            this.toastr.success(result['responsetext']);
+            this.router.navigate(['checkout']);
+          } else {
+            this.toastr.error(result['responsetext'] || 'Error en la transacción');
+            this.router.navigate(['checkout']);
+          }
+
+          this.loaderService.hideLoader();
+        },
+        error: (error) => {
+          console.log(error);
+          this.loaderService.hideLoader();
+        }
+      });
     }
 
+  }
+
+  ngOnDestroy(){
+    this.paymentSuscription?.unsubscribe();
   }
 }

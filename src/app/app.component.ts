@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { ToastrComponent } from './common/components/toastr/toastr.component';
+import { LoaderComponent } from './common/components/loader/loader.component';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,13 @@ import { ToastrComponent } from './common/components/toastr/toastr.component';
     RouterOutlet,
     NavbarComponent,
     FooterComponent,
-    ToastrComponent,
+    LoaderComponent,
   ],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
   title = 'arucareLanding';
 
+  loaderService = inject(LoaderService);
   route = inject(Router);
 }

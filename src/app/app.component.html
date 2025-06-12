@@ -6,4 +6,7 @@
 @if (!this.route.url.includes('checkout')){
   <app-footer ></app-footer>
 }
-<app-toastr></app-toastr>
+
+@if (this.loaderService.loader()) {
+  <app-loader></app-loader>
+}

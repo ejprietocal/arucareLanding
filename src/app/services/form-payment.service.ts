@@ -10,12 +10,22 @@ export class FormPaymentService {
 
   http = inject(HttpClient);
 
-  submitPayment(data: any){
-    const params = {
+  submitPayment(data: any) : Observable<any> {
+    const fullData = {
       ...data,
       security_key: environment.SECURITY_KEY,
     };
-    // return this.http.post(environment.URL_ENDPOINT, null, { params });
+
+    const body = new URLSearchParams();
+    for (const key in fullData) {
+      body.set(key, fullData[key]);
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+
+    return this.http.post(`${environment.URL_DOMAIN}/${environment.PROXY_URL}`, body.toString(), { headers });
   }
 
   submitPaymentTest(data: any): Observable<any> {

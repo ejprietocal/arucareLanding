@@ -5,7 +5,8 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 import { MaterialPreset } from './presets/material.presets';
-
+import { provideToastr } from 'ngx-toastr';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
       })
     ),
+    provideHttpClient(),
     provideAnimationsAsync(),
     providePrimeNG({
         theme: {
@@ -28,6 +30,8 @@ export const appConfig: ApplicationConfig = {
               darkModeSelector: false || 'none'
             }
         }
-    })
+    }),
+    provideToastr({timeOut: 3000, positionClass: 'toast-top-right',easing: "ease-in-out" , easeTime: 500, maxOpened: 3, }),
+
   ]
 };

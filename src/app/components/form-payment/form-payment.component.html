@@ -1,0 +1,100 @@
+<div class="w-full min-h-screen flex justify-center items-center pt-20 pb-50 pe-3 ps-3">
+
+  <div class="p-2 sm:p-5 w-full  max-w-screen-md rounded-xl shadow-lg">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h2 class="text-2xl font-bold text-stone-900 mb-5">Payment</h2>
+      <div class="grid grid-cols-6 gap-3">
+        <div class="col-span-6 sm:col-span-3">
+          <label for="first_name" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">First name</label>
+          <input
+              type="text"
+              id="first_name"
+              class="input-behavior" formControlName="first_name"
+              [ngClass]="{'border-red-500!': form.get('first_name')?.hasError('required') && form.get('first_name')?.touched}"
+              placeholder="John"
+              required
+              >
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="last_name" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Last name</label>
+          <input type="text" id="last_name" class="input-behavior" formControlName="last_name"
+                 [ngClass]="{'border-red-500!': form.get('last_name')?.hasError('required') && form.get('last_name')?.touched}"
+                 placeholder="Doe"
+                 required>
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+          <label for="email" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Email</label>
+          <input type="email" id="email" class="input-behavior" formControlName="email"
+                 [ngClass]="{'border-red-500!': form.get('email')?.hasError('required') && form.get('email')?.touched}"
+                 placeholder="example@example.com"
+
+                 required>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="phone" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Phone</label>
+          <input type="tel" id="phone" class="input-behavior" formControlName="phone"
+                 [ngClass]="{'border-red-500!': form.get('phone')?.hasError('required') && form.get('phone')?.touched}"
+                 placeholder="123-456-7890"
+                 required>
+        </div>
+        <div class="col-span-6">
+          <label for="address1" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Address</label>
+          <input type="text" id="address1" class="input-behavior" formControlName="address1"
+                 [ngClass]="{'border-red-500!': form.get('address1')?.hasError('required') && form.get('address1')?.touched}"
+                 placeholder="123 Main St Apt 123 New York, NY 10001"
+                 required>
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+          <label for="city" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">City</label>
+          <input type="text" id="city" class="input-behavior" formControlName="city"
+                 [ngClass]="{'border-red-500!': form.get('city')?.hasError('required') && form.get('city')?.touched}"
+                 placeholder="City"
+                 required>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="country" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Country</label>
+          <input type="text" id="country" class="input-behavior" formControlName="country"
+                 [ngClass]="{'border-red-500!': form.get('country')?.hasError('required') && form.get('country')?.touched}"
+                 placeholder="Country"
+                 required>
+        </div>
+
+        <div class="col-span-4 sm:col-span-3">
+          <label for="ccnumber" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CC Number</label>
+          <input type="text" id="ccnumber" class="input-behavior" formControlName="ccnumber"
+                 [ngClass]="{'border-red-500!': form.get('ccnumber')?.hasError('required') && form.get('ccnumber')?.touched}"
+                 placeholder="XXXX XXXX XXXX XXXX"
+                 required>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
+          <label for="ccexp" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CC Expiration</label>
+          <input type="text" id="ccexp" class="input-behavior" formControlName="ccexp"
+                 [ngClass]="{'border-red-500!': form.get('ccexp')?.hasError('required') && form.get('ccexp')?.touched}"
+                 placeholder="MM/YY"
+                 required>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="cvv" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">CVV</label>
+          <input type="text" id="cvv" class="input-behavior" formControlName="cvv"
+                 [ngClass]="{'border-red-500!': form.get('cvv')?.hasError('required') && form.get('cvv')?.touched}"
+                 placeholder="CVV"
+                 required
+                 >
+
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="amount" class="block text-sm font-medium text-stone-900 mb-1 sm:mb-3">Amount</label>
+          <input type="text" id="amount" class="input-behavior" formControlName="amount"
+                 [ngClass]="{'border-red-500!': form.get('amount')?.hasError('required') && form.get('amount')?.touched}"
+                 placeholder="$0.00"
+                 required>
+        </div>
+      </div>
+      <div class="flex justify-center sm:justify-end w-full gap-3 mt-10 mb-5">
+        <button class="w-full sm:w-fit text-white font-bold px-16 py-4 rounded-md bg-green-700">Confirm Payment</button>
+      </div>
+    </form>
+  </div>
+</div>

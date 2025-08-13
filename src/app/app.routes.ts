@@ -15,7 +15,7 @@ export const routes: Routes = [
     {   path: 'privacy&policy', component: PrivacyPolicyComponent },
     {   path: 'termsAndConditions', component: TermsServicesComponent },
     {   path : 'services', component: ServicesComponent },
-    {   path: 'checkout', component: FormPaymentComponent },
+    // {   path: 'checkout', component: FormPaymentComponent },
     {   path: 'resume', component: ResumePaymentComponent },
     {   path: '**', redirectTo: '' }
 ];
